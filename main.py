@@ -105,6 +105,7 @@ def handle_enter_scores(message: Message):
         else:
             exam_name, exam_score = exam_info
 
+        exam_name = exam_name.lower()
         if not exam_score.isdigit():
             bot.reply_to(
                 message,
@@ -119,7 +120,7 @@ def handle_enter_scores(message: Message):
                     f"Ты можешь ввести только целое число в диапозоне от {MIN_SCORES} до {MAX_SCORES}. "
                     f"Для ввода баллов введи команду /enter_scores"
                 )
-            elif exam_name.lower() not in [exam.lower() for exam in EXAM_NAMES]:
+            elif exam_name not in [exam.lower() for exam in EXAM_NAMES]:
                 bot.reply_to(
                     message,
                     f"Введённое тобой название не входит в список предметов. "
